@@ -6,6 +6,12 @@ $(document).ready(function () {
     
         getCurrent(lat, lon);
         getForecast(lat, lon);
+
+        $('#weather').css({
+            'background-color': 'lightblue',
+            'padding': '17px',
+            'text-align': 'center'
+        });
     });
 });
 
@@ -28,7 +34,7 @@ function getCurrent(lat, lon){
         console.log('(Current day) Direction: ' + data.current.wind_dir);
         console.log('(Current day) Speed: ' + data.current.wind_kph);
 
-        $("#weather").append("<br />" + "TEMPERATURE:" + "<br />");
+        $("#weather").append("TEMPERATURE:" + "<br />");
         $("#weather").append("<br />" + "Current: " + data.current.temp_c + "°C");
         $("#weather").append("<br />" + "Low: " + data.forecast.forecastday[0].day.mintemp_c + "°C");
         $("#weather").append("<br />" + "High: " + data.forecast.forecastday[0].day.maxtemp_c + "°C");
