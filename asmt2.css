@@ -4,6 +4,7 @@
   padding: 2%;
   border-style: solid;
   border-color: blue;
+  border-width: thin;
 }
 #form {
   padding: 15px;
