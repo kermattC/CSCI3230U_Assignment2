@@ -7,11 +7,7 @@ $(document).ready(function () {
         getCurrent(lat, lon);
         getForecast(lat, lon);
 
-        $('#weather').css({
-            'background-color': 'lightblue',
-            'padding': '17px',
-            'text-align': 'center'
-        });
+        $("#weather").addClass('weather')
     });
 });
 
