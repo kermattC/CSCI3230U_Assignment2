@@ -7,7 +7,9 @@ $(document).ready(function () {
         getCurrent(lat, lon);
         getForecast(lat, lon);
 
-        $("#weather").addClass('weather')
+        $("#weather").addClass('weather');
+        $("#forecast").addClass('forecast');
+
     });
 });
 

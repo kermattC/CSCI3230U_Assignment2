@@ -1,8 +1,14 @@
 .weather {
   background-color: lightblue;
-  padding: 10px;
   text-align: center;
+  padding: 2%;
+  border-style: solid;
+  border-color: blue;
 }
 #form {
   padding: 15px;
+}
+
+.forecast {
+  /* border-style: solid; */
 }
