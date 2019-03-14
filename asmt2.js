@@ -48,7 +48,7 @@ function getForecast(lat, lon){
     $.ajax({
         url: "http://api.apixu.com/v1/forecast.json?q="+lat+","+lon+"&days=7&key=fe34f785ddd3406dbbf202145191203", success:function (data){
             console.log("Forecast for next 7 days");
-            $("#forecast").append("<br /><h2>"+ "Forecast: " + "</h2><br />");
+            $("#forecast").append("<br /><h3>"+ "Forecast: " + "</h3><br />");
             $("#forecast").append("<table id='TABLE'>");
             $("#TABLE").append("<tr><th>" + 'Date' + "</th>" + 
                                   "<th>" + 'Conditions' + "</th>" + 
