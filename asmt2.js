@@ -16,21 +16,6 @@ $(document).ready(function () {
 function getCurrent(lat, lon){
     $.ajax({
         url: "http://api.apixu.com/v1/forecast.json?q="+lat+","+lon+"&key=fe34f785ddd3406dbbf202145191203", success:function (data){
-        console.log('Temperature');
-        console.log('(Current day) Current: ' + data.current.temp_c);
-        console.log('(Current day) Low: ' + data.forecast.forecastday[0].day.mintemp_c);
-        console.log('(Current day) High: ' + data.forecast.forecastday[0].day.maxtemp_c);
-        console.log('(Current day) Feels like: ' + data.current.feelslike_c);
-
-        console.log('Condition');
-        console.log('(Current day) Type: ' + data.current.condition.text);
-        console.log('(Current day) Cloud cover: ' + data.current.cloud);
-        console.log('(Current day) Humidity' + data.current.humidity);
-        console.log('(Current day) Pressure: ' + data.current.pressure_mb);
-
-        console.log('Wind');
-        console.log('(Current day) Direction: ' + data.current.wind_dir);
-        console.log('(Current day) Speed: ' + data.current.wind_kph);
 
         $("#weather").append("TEMPERATURE:" + "<br />");
         $("#weather").append("<br />" + "Current: " + data.current.temp_c + "°C");
@@ -68,18 +53,17 @@ function getForecast(lat, lon){
             $("#forecast").append("<br />"+ "Date &emsp; &emsp; &emsp; &emsp; Condition: &emsp; &emsp; &emsp; &emsp; High: &emsp; &emsp; &emsp; &emsp; Low: &emsp; &emsp; &emsp; &emsp; Wind: &emsp; &emsp; &emsp; &emsp; Outlook: <br/>");
 
             for (let i = 0; i < data.forecast.forecastday.length; i++){
-                console.log('Day: ' + data.forecast.forecastday[i].date);
-                console.log('Condition: ' + data.forecast.forecastday[i].day.condition.icon);
-                console.log('High: ' + data.forecast.forecastday[i].day.maxtemp_c);
-                console.log('Low: ' + data.forecast.forecastday[i].day.mintemp_c);
-                console.log('Wind: ' + data.forecast.forecastday[i].day.maxwind_kph);
-                console.log('Outlook: ' + data.forecast.forecastday[i].day.condition.text);
+                $("#forecast").append(data.forecast.forecastday[i].date + 
+                "&emsp;" + "<img src='https:"+data.forecast.forecastday[i].day.condition.icon+"'>" + 
                 
-
-                $("#forecast").append(data.forecast.forecastday[i].date + "&emsp;" + data.forecast.forecastday[i].day.condition.icon + "&emsp;" + data.forecast.forecastday[i].day.maxtemp_c +"°C &emsp;"+ data.forecast.forecastday[i].day.mintemp_c + "°C &emsp;"+  data.forecast.forecastday[i].day.maxwind_kph + "km/h &emsp;" + data.forecast.forecastday[i].day.condition.text + "<br />");
+                "&emsp;" + data.forecast.forecastday[i].day.maxtemp_c +
+                "°C &emsp;"+ data.forecast.forecastday[i].day.mintemp_c + 
+                "°C &emsp;"+  data.forecast.forecastday[i].day.maxwind_kph + 
+                "km/h &emsp;" + data.forecast.forecastday[i].day.condition.text + 
+                "<br />");
             }
         // $.each(data, function(key, value) {
-        //     if (key == "location"){
+        //     if (key == "location"){  
         //         console.log('(From forecast)', value.name);
         //     }
         //     if (key == "current"){
