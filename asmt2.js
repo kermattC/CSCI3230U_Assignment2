@@ -28,7 +28,7 @@ function getCurrent(lat, lon){
         $("#weather").append("<br />" + "Humidity: " + data.current.humidity + "%");
         $("#weather").append("<br />" + "Pressure: " + data.current.pressure_mb + "mB");
 
-        $("#weather").append("<h3>"+ "WIND:" + "</h3>");
+        $("#weather").append("<h3>"+ "Wind:" + "</h3>");
         $("#weather").append("Direction: " + data.current.wind_dir + "°");
         $("#weather").append("<br />" + "Speed: " + data.current.wind_kph + "km/h");
 
@@ -50,14 +50,19 @@ function getForecast(lat, lon){
             console.log("Forecast for next 7 days");
             $("#forecast").append("<br /><h2>"+ "Forecast: " + "</h2><br />");
             $("#forecast").append("<table>");
-            $("#forecast").append("<tr><th>" + 'Date' + "</th>" + "<th>" + 'Date' + "</th>" + "<th>" + 'High' + "</th>" + "<th>" + 'Low' + "</th>" + "<th>" + 'Wind' + "</th>" + "<th>" + 'Outlook' + "</th></tr>");
+            $("#forecast").append("<tr><th>" + 'Date' + "</th>" + 
+                                  "<th>" + 'Conditions' + "</th>" + 
+                                  "<th>" + 'High' + "</th>" + 
+                                  "<th>" + "Low" + "</th>" + 
+                                  "<th>" + 'Wind' + "</th>" + 
+                                  "<th>" + 'Outlook' + "</th></tr>");
             
             for (let i = 0; i < data.forecast.forecastday.length; i++){
-                $("#forecast").append(data.forecast.forecastday[i].date + 
-                "&emsp;" + "<img src='https:"+data.forecast.forecastday[i].day.condition.icon+"'>" + 
-                
-                $("#forecast").append("<tr><td>" + data.forecast.forecastday[i].date + "</td>" + "<td>" + data.forecast.forecastday[i].day.condition.icon + "</td>" + "<td>" + data.forecast.forecastday[i].day.maxtemp_c + "°C </td>" + "<td>" +data.forecast.forecastday[i].day.mintemp_c + "°C </td>" + "<td>" +  data.forecast.forecastday[i].day.maxwind_kph + "km/h </td>" + "<td>" + data.forecast.forecastday[i].day.condition.text + "</td></tr>");
+                $("#forecast").append("<tr><td>" + data.forecast.forecastday[i].date + "</td>" + `<td><img src="https://${data.forecast.forecastday[i].day.condition.icon}" /></td>` + 
+                "<td>" + data.forecast.forecastday[i].day.maxtemp_c + "°C </td>" + "<td>" +data.forecast.forecastday[i].day.mintemp_c + "°C </td>" + "<td>" +  data.forecast.forecastday[i].day.maxwind_kph + 
+                "km/h </td>" + "<td>" + data.forecast.forecastday[i].day.condition.text + "</td></tr>");
             }
+            $("#forecast").append("</table>");
         // $.each(data, function(key, value) {
         //     if (key == "location"){  
         //         console.log('(From forecast)', value.name);
