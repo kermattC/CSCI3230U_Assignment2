@@ -9,7 +9,6 @@ $(document).ready(function () {
 
         $("#weather").addClass('weather');
         $("#forecast").addClass('forecast');
-
     });
 });
 
@@ -32,20 +31,20 @@ function getCurrent(lat, lon){
         console.log('(Current day) Direction: ' + data.current.wind_dir);
         console.log('(Current day) Speed: ' + data.current.wind_kph);
 
-        $("#weather").append("TEMPERATURE:" + "<br />");
-        $("#weather").append("<br />" + "Current: " + data.current.temp_c + "°C");
+        $("#weather").append("<h3>" + 'Temperature' + "</h3>");
+        $("#weather").append("Current: " + data.current.temp_c + "°C");
         $("#weather").append("<br />" + "Low: " + data.forecast.forecastday[0].day.mintemp_c + "°C");
         $("#weather").append("<br />" + "High: " + data.forecast.forecastday[0].day.maxtemp_c + "°C");
         $("#weather").append("<br />" + "Feels like: " + data.current.feelslike_c + "°C");
         
-        $("#weather").append("<br />"+"<br />" + "CONDITION:" + "<br />")
-        $("#weather").append("<br />" + "Type: " + data.current.condition.text);
+        $("#weather").append("<h3>" + "Condition:" + "</h3>")
+        $("#weather").append("Type: " + data.current.condition.text);
         $("#weather").append("<br />" + "Cloud Cover: " + data.current.cloud + "%");
         $("#weather").append("<br />" + "Humidity: " + data.current.humidity + "%");
         $("#weather").append("<br />" + "Pressure: " + data.current.pressure_mb + "mB");
 
-        $("#weather").append("<br />"+ "<br />" + "WIND:" + "<br />");
-        $("#weather").append("<br />" + "Direction: " + data.current.wind_dir + "°");
+        $("#weather").append("<h3>"+ "WIND:" + "</h3>");
+        $("#weather").append("Direction: " + data.current.wind_dir + "°");
         $("#weather").append("<br />" + "Speed: " + data.current.wind_kph + "km/h");
 
         // $.each(data, function(key, value) {
@@ -64,9 +63,10 @@ function getForecast(lat, lon){
     $.ajax({
         url: "http://api.apixu.com/v1/forecast.json?q="+lat+","+lon+"&days=7&key=fe34f785ddd3406dbbf202145191203", success:function (data){
             console.log("Forecast for next 7 days");
-            $("#forecast").append("<br />"+ "Forecast: " + "<br />");
-            $("#forecast").append("<br />"+ "Date &emsp; &emsp; &emsp; &emsp; Condition: &emsp; &emsp; &emsp; &emsp; High: &emsp; &emsp; &emsp; &emsp; Low: &emsp; &emsp; &emsp; &emsp; Wind: &emsp; &emsp; &emsp; &emsp; Outlook: <br/>");
-
+            $("#forecast").append("<br /><h2>"+ "Forecast: " + "</h2><br />");
+            $("#forecast").append("<table>");
+            $("#forecast").append("<tr><th>" + 'Date' + "</th>" + "<th>" + 'Date' + "</th>" + "<th>" + 'High' + "</th>" + "<th>" + 'Low' + "</th>" + "<th>" + 'Wind' + "</th>" + "<th>" + 'Outlook' + "</th></tr>");
+            
             for (let i = 0; i < data.forecast.forecastday.length; i++){
                 console.log('Day: ' + data.forecast.forecastday[i].date);
                 console.log('Condition: ' + data.forecast.forecastday[i].day.condition.icon);
@@ -75,8 +75,7 @@ function getForecast(lat, lon){
                 console.log('Wind: ' + data.forecast.forecastday[i].day.maxwind_kph);
                 console.log('Outlook: ' + data.forecast.forecastday[i].day.condition.text);
                 
-
-                $("#forecast").append(data.forecast.forecastday[i].date + "&emsp;" + data.forecast.forecastday[i].day.condition.icon + "&emsp;" + data.forecast.forecastday[i].day.maxtemp_c +"°C &emsp;"+ data.forecast.forecastday[i].day.mintemp_c + "°C &emsp;"+  data.forecast.forecastday[i].day.maxwind_kph + "km/h &emsp;" + data.forecast.forecastday[i].day.condition.text + "<br />");
+                $("#forecast").append("<tr><td>" + data.forecast.forecastday[i].date + "</td>" + "<td>" + data.forecast.forecastday[i].day.condition.icon + "</td>" + "<td>" + data.forecast.forecastday[i].day.maxtemp_c + "°C </td>" + "<td>" +data.forecast.forecastday[i].day.mintemp_c + "°C </td>" + "<td>" +  data.forecast.forecastday[i].day.maxwind_kph + "km/h </td>" + "<td>" + data.forecast.forecastday[i].day.condition.text + "</td></tr>");
             }
         // $.each(data, function(key, value) {
         //     if (key == "location"){
