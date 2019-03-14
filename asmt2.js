@@ -49,8 +49,8 @@ function getForecast(lat, lon){
         url: "http://api.apixu.com/v1/forecast.json?q="+lat+","+lon+"&days=7&key=fe34f785ddd3406dbbf202145191203", success:function (data){
             console.log("Forecast for next 7 days");
             $("#forecast").append("<br /><h2>"+ "Forecast: " + "</h2><br />");
-            $("#forecast").append("<table>");
-            $("#forecast").append("<tr><th>" + 'Date' + "</th>" + 
+            $("#forecast").append("<table id='TABLE'>");
+            $("#TABLE").append("<tr><th>" + 'Date' + "</th>" + 
                                   "<th>" + 'Conditions' + "</th>" + 
                                   "<th>" + 'High' + "</th>" + 
                                   "<th>" + "Low" + "</th>" + 
@@ -58,7 +58,7 @@ function getForecast(lat, lon){
                                   "<th>" + 'Outlook' + "</th></tr>");
             
             for (let i = 0; i < data.forecast.forecastday.length; i++){
-                $("#forecast").append("<tr><td>" + data.forecast.forecastday[i].date + "</td>" + `<td><img src="https://${data.forecast.forecastday[i].day.condition.icon}" /></td>` + 
+                $("#TABLE").append("<tr><td>" + data.forecast.forecastday[i].date + "</td>" + `<td><img src="https://${data.forecast.forecastday[i].day.condition.icon}" /></td>` + 
                 "<td>" + data.forecast.forecastday[i].day.maxtemp_c + "°C </td>" + "<td>" +data.forecast.forecastday[i].day.mintemp_c + "°C </td>" + "<td>" +  data.forecast.forecastday[i].day.maxwind_kph + 
                 "km/h </td>" + "<td>" + data.forecast.forecastday[i].day.condition.text + "</td></tr>");
             }

@@ -10,6 +10,7 @@
   padding: 15px;
 }
 
-.forecast {
-  /* border-style: solid; */
+.forecast td{
+  /* cellspacing:10; */
+  /* padding-right: 10%; */
 }
