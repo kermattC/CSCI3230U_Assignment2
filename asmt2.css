@@ -7,6 +7,7 @@
   border-color: blue;
   border-width: thin;
 }
+
 #form {
   padding: 15px;
 }
@@ -14,10 +15,7 @@
 table {
   border-collapse: collapse;
   width: 75%;
-}
-
-td {
-  padding: 15px;
+  padding: 5px 5px 5px 5px;
 }
 
 tr:nth-child(even) {background-color: #f2f2f2;}
@@ -25,4 +23,5 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 th {
   background-color: lightblue;
   color: black;
+
 }

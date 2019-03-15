@@ -1,9 +1,11 @@
 $(document).ready(function () {
     $('#goButton').on('click', function(){
+        $("#weather").html("");
+        $("#forecast").html("")
+
         var lat = $('#lat').val();
         var lon = $('#lon').val();
-        //°
-    
+
         getCurrent(lat, lon);
         getForecast(lat, lon);
 
