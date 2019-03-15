@@ -58,7 +58,7 @@ function getForecast(lat, lon){
                                   "<th>" + 'Outlook' + "</th></tr>");
             
             for (let i = 0; i < data.forecast.forecastday.length; i++){
-                $("#TABLE").append("<tr><td>" + data.forecast.forecastday[i].date + "</td>" + `<td><img src="https://${data.forecast.forecastday[i].day.condition.icon}" /></td>` + 
+                $("#TABLE").append("<tr><td>"+ "&ensp;" + data.forecast.forecastday[i].date + "</td>" + `<td><img src="https://${data.forecast.forecastday[i].day.condition.icon}" /></td>` + 
                 "<td>" + data.forecast.forecastday[i].day.maxtemp_c + "°C </td>" + "<td>" +data.forecast.forecastday[i].day.mintemp_c + "°C </td>" + "<td>" +  data.forecast.forecastday[i].day.maxwind_kph + 
                 "km/h </td>" + "<td>" + data.forecast.forecastday[i].day.condition.text + "</td></tr>");
             }
