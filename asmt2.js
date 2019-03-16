@@ -52,7 +52,7 @@ function getForecast(lat, lon){
             console.log("Forecast for next 7 days");
             $("#forecast").append("<br /><h3>"+ "Forecast: " + "</h3><br />");
             $("#forecast").append("<table id='TABLE'>");
-            $("#TABLE").append("<tr><th>" + 'Date' + "</th>" + 
+            $("#TABLE").append("<tr><th>" + "&ensp;" + 'Date' + "</th>" + 
                                   "<th>" + 'Conditions' + "</th>" + 
                                   "<th>" + 'High' + "</th>" + 
                                   "<th>" + "Low" + "</th>" + 
