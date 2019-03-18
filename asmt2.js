@@ -3,6 +3,12 @@
  * Matt Chan       - 100622178
  */
 
+/** Function loads when the program loads 
+ *  Has a button that will clear any previous html
+ *  Calls the functions to populate the
+ *      bootstrap columns with the new data
+ * 
+ */
 $(document).ready(function () {
     $('#goButton').on('click', function(){
         $("#weather").html("");
@@ -19,37 +25,43 @@ $(document).ready(function () {
     });
 });
 
+/**
+ *  Utilizes the api key and retrieves information 
+ *  Appends the information to columns
+ *  headers has a different tag than the details under the p tag
+ * 
+ */
+
 function getCurrent(lat, lon){
     $.ajax({
         url: "http://api.apixu.com/v1/forecast.json?q="+lat+","+lon+"&key=fe34f785ddd3406dbbf202145191203", success:function (data){
 
         $("#weather").append("<h3>" + 'Temperature' + "</h3>");
-        $("#weather").append("Current: " + data.current.temp_c + "°C");
-        $("#weather").append("<br />" + "Low: " + data.forecast.forecastday[0].day.mintemp_c + "°C");
-        $("#weather").append("<br />" + "High: " + data.forecast.forecastday[0].day.maxtemp_c + "°C");
-        $("#weather").append("<br />" + "Feels like: " + data.current.feelslike_c + "°C");
+        $("#weather").append("<p> Current:" + data.current.temp_c + "°C </p>");
+        $("#weather").append("<p> Low: " + data.forecast.forecastday[0].day.mintemp_c + "°C </p>");
+        $("#weather").append("<p> High: " + data.forecast.forecastday[0].day.maxtemp_c + "°C </p>");
+        $("#weather").append("<p> Feels like: " + data.current.feelslike_c + "°C </p>");
         
         $("#weather").append("<h3>" + "Condition:" + "</h3>")
-        $("#weather").append("Type: " + data.current.condition.text);
-        $("#weather").append("<br />" + "Cloud Cover: " + data.current.cloud + "%");
-        $("#weather").append("<br />" + "Humidity: " + data.current.humidity + "%");
-        $("#weather").append("<br />" + "Pressure: " + data.current.pressure_mb + "mB");
+        $("#weather").append("<p> Type: " + data.current.condition.text+ "</p>");
+        $("#weather").append("<p> Cloud Cover: " + data.current.cloud + "% </p>");
+        $("#weather").append("<p> Humidity: " + data.current.humidity + "% </p>");
+        $("#weather").append("<p> Pressure: " + data.current.pressure_mb + "mB </p>");
 
         $("#weather").append("<h3>"+ "Wind:" + "</h3>");
-        $("#weather").append("Direction: " + data.current.wind_dir + "°");
-        $("#weather").append("<br />" + "Speed: " + data.current.wind_kph + "km/h");
-
-        // $.each(data, function(key, value) {
-        //     if (key == "location"){
-        //         console.log('(From current)' , value.name);
-        //     }
-        //     if (key == "current"){
-        //         console.log('(From current)', value.wind_mph);
-        //     }
-        // });
+        $("#weather").append("<p> Direction: " + data.current.wind_dir + "° </p>");
+        $("#weather").append("<p> Speed: " + data.current.wind_kph + "km/h </p>");
         }
     });
 }
+
+/**
+ * 
+ * Same as the function above, but goes through a for loop to append information
+ *  from the next days
+ * 
+ * 
+ */
 
 function getForecast(lat, lon){
     $.ajax({
@@ -65,41 +77,14 @@ function getForecast(lat, lon){
                                   "<th>" + 'Outlook' + "</th></tr>");
             
             for (let i = 0; i < data.forecast.forecastday.length; i++){
-                $("#TABLE").append("<tr><td>"+ "&ensp;" + data.forecast.forecastday[i].date + "</td>" + `<td><img src="https://${data.forecast.forecastday[i].day.condition.icon}" /></td>` + 
-                "<td>" + data.forecast.forecastday[i].day.maxtemp_c + "°C </td>" + "<td>" +data.forecast.forecastday[i].day.mintemp_c + "°C </td>" + "<td>" +  data.forecast.forecastday[i].day.maxwind_kph + 
-                "km/h </td>" + "<td>" + data.forecast.forecastday[i].day.condition.text + "</td></tr>");
+                $("#TABLE").append("<tr><td>"+ "&ensp;" + data.forecast.forecastday[i].date + "</td>" + 
+                `<td><img src="https://${data.forecast.forecastday[i].day.condition.icon}" /></td>` + 
+                "<td>" + data.forecast.forecastday[i].day.maxtemp_c + "°C </td>" + 
+                "<td>" +data.forecast.forecastday[i].day.mintemp_c + "°C </td>" + 
+                "<td>" +  data.forecast.forecastday[i].day.maxwind_kph + "km/h </td>" + 
+                "<td>" + data.forecast.forecastday[i].day.condition.text + "</td></tr>");
             }
             $("#forecast").append("</table>");
-        // $.each(data, function(key, value) {
-        //     if (key == "location"){  
-        //         console.log('(From forecast)', value.name);
-        //     }
-        //     if (key == "current"){
-        //         console.log('(From forecast)', value.wind_mph);
-        //     }
-        //     // example of finding two layers of nested objects
-        //     $.each(value, function(innerKey, innerValue){
-        //         if (innerKey == "condition"){
-        //             $.each(innerValue, function (innerInnerKey, innerInnerValue){
-        //                 console.log('(From forecast) Code:' , innerValue.code);
-        //             });
-        //         }
-        //         // example of finding 3 layers of nested objects
-        //         if (innerKey == "forecastday"){
-        //             $.each(innerValue, function(innerInnerKey, innerInnerValue){
-        //                 if (innerInnerKey == "1"){
-        //                     $.each(innerInnerValue, function (innerInnerInnerKey, innerInnerInnerValue){
-        //                         if (innerInnerInnerKey == "day"){
-        //                             $.each(innerInnerInnerValue, function(innerInnerInnerInnerKey, innerInnerInnerInnerValue){
-        //                             console.log('(From forecast) Next day max celsius:' , innerInnerInnerValue.maxtemp_c);
-        //                             });
-        //                         }
-        //                     });
-        //                 }
-        //             });
-        //         }
-        //     });
-        // });
         }
     });
 }
