@@ -1,3 +1,8 @@
+/** Group Members:
+ * Dominic Cabitac - 100547918
+ * Matt Chan       - 100622178
+ */
+
 $(document).ready(function () {
     $('#goButton').on('click', function(){
         $("#weather").html("");
